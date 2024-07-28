@@ -13,12 +13,12 @@
     <body>
         <div class="container #e1f5fe light-blue lighten-5 center">
             <h1>Cadastro de Pessoa</h1>
-            <form action="" method="post">
+            <form action="cadastroPessoa.php" method="POST">
                 <div class="row">
                     <div class="col s12">
                         <div class="row">
                             <div class="input-field col s6 push-s3">
-                                <input type="text" name="nomePessoa">
+                                <input type="text" name="nomePessoa" required> <!-- para nao deixar cadastrar sem nome -->
                                 <label for="nomePessoa">Nome completo</label>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+                <button class="btn waves-effect waves-light" type="submit">Enviar
                     <i class="material-icons right">send</i>
                   </button>
                 

@@ -10,4 +10,9 @@
         echo "Nao foi possivel conectar ao banco de dados";
     }
 
+    function mensagem($texto) {
+        echo  "<div class='card-panel teal lighten-2'>'$texto'</div>";
+        
+    }
+
 
