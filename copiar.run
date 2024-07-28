@@ -1,0 +1,2 @@
+sudo rm -rf /opt/lampp/htdocs/pessoa
+sudo cp -fR /home/marina/php-playground/pessoa /opt/lampp/htdocs
