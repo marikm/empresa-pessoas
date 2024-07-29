@@ -34,55 +34,64 @@
     ?>
 
     <body>
-        <div class="container">
+        <div class="container pink lighten-5">
 
-            <h1>Pesquisar</h1>
+          <h1>Pesquisar</h1>
+              <form class="" action="pesquisa.php"  method="POST" >
+                <div class="container">
+                  <div class="row">
+                    <div class="col s12">
+                      <div class="row valign-wrapper">
+                        <div class="input-field col s6">
+                          <input id="search" type="search" name="busca" autofocus/>
+                          <a>
+                            <label class="label-icon" for="search">Digite o nome da pessoa para pesquisar</label>
+                          </a>
+                        </div>
+                        <div class="col s3">
+                          <button type="submit" class="btn waves-effect waves-light"><i class="material-icons right">search</i>Pesquisar
+                          </button>
+                        </div>
+                        <div class="col s3">
+                              <a href="pessoas.php" class="btn waves-effect waves-light">Cadastrar</a>
+                        </div>
 
-            <nav>
-                <div class="nav-wrapper">
-                <form class="" action="pesquisa.php"  method="POST" >
-                    <div class="input-field">
-                    <input id="search" type="search" name="busca"/>
-                    <!-- <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i> -->
-                    <label class="label-icon" for="search"><button class="btn waves-effect waves-light right" type="submit">Pesquisar
-                    <i class="material-icons left">search</i></label>
-                  </button>
+                      </div>
                     </div>
-                </form>
+                  </div>
                 </div>
-            </nav>
+              </form>
+          <table>
+            <thead>
+              <tr>
+                  <th>Nome</th>
+                  <th>Endereço</th>
+                  <th>Telefone</th>
+                  <th>Email</th>
+                  <th>Data nascimento</th>
+                  <th>Funçoes</th>
+              </tr>
+            </thead>
 
-            <table>
-        <thead>
-          <tr>
-              <th>Nome</th>
-              <th>Endereço</th>
-              <th>Telefone</th>
-              <th>Email</th>
-              <th>Data nascimento</th>
-          </tr>
-        </thead>
+            <tbody>
+              <?php
+                if($totalRegistros > 0) {
+                  foreach($matrizDados as $linha){
+              ?>
+              <tr>
+                <td><?=$linha['nomePessoa'];?></td>
+                <td><?=$linha['endereco'];?></td>
+                <td><?=$linha['telefone'];?></td>
+                <td><?=$linha['email'];?></td>
+                <td><?=mostrarData($linha['dataNascimento']);?></td>
+              </tr>
+              <?php
+                  }
+                }
+              ?>
 
-        <tbody>
-          <?php
-            if($totalRegistros > 0) {
-              foreach($matrizDados as $linha){
-          ?>
-          <tr>
-            <td><?=$linha['nomePessoa'];?></td>
-            <td><?=$linha['endereco'];?></td>
-            <td><?=$linha['telefone'];?></td>
-            <td><?=$linha['email'];?></td>
-            <td><?=$linha['dataNascimento'];?></td>
-          </tr>
-          <?php
-              }
-            }
-          ?>
-
-        </tbody>
-      </table>
+            </tbody>
+          </table>
         </div>
 
       <!--JavaScript at end of body for optimized loading-->
