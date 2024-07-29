@@ -11,6 +11,27 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <title>.:Lista de Pessoas:.</title>
+
+    <?php
+        
+        $pesquisa = $_POST['busca'] ?? '';
+        try{
+            require_once("./conexao/conexao.php");
+            $sql = "SELECT * FROM pessoas WHERE nome LIKE '%$pesquisa%'";
+    
+            $dados = $conn->query($sql);
+            print_r($dados);
+
+            $matrizDados = $dados->fetchAll();
+            $totalRegistros = $dados->rowCount();
+
+        } catch (PDOException $e) {
+            echo "não executou sql para buscar pesquisa no bd";
+        }
+
+        
+    ?>
+
     <body>
         <div class="container">
 
@@ -18,9 +39,9 @@
 
             <nav>
                 <div class="nav-wrapper">
-                <form>
+                <form class="" action="pesquisa.php"  method="POST" >
                     <div class="input-field">
-                    <input id="search" type="search" required>
+                    <input id="search" type="search" name="busca" required>
                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                     <i class="material-icons">close</i>
                     </div>
@@ -31,9 +52,11 @@
             <table>
         <thead>
           <tr>
-              <th>Name</th>
-              <th>Item Name</th>
-              <th>Item Price</th>
+              <th>Nome</th>
+              <th>Endereço</th>
+              <th>Telefone</th>
+              <th>Email</th>
+              <th>Data nascimento</th>
           </tr>
         </thead>
 
