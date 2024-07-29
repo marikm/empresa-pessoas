@@ -13,23 +13,24 @@
     <title>.:Lista de Pessoas:.</title>
 
     <?php
-        
-        $pesquisa = $_POST['busca'] ?? '';
         try{
             require_once("./conexao/conexao.php");
-            $sql = "SELECT * FROM pessoas WHERE nome LIKE '%$pesquisa%'";
+            $pesquisa = $_POST['busca'] ?? "";
+            echo $pesquisa;
+            $sql = "SELECT * FROM pessoas WHERE nomePessoa LIKE '%$pesquisa%'";
     
             $dados = $conn->query($sql);
-            print_r($dados);
-
+            
             $matrizDados = $dados->fetchAll();
             $totalRegistros = $dados->rowCount();
+            
+            // foreach($matrizDados as $linha){ // imprimindo conteudo do array
+            //   print_r($linha);
+            // }
 
         } catch (PDOException $e) {
             echo "não executou sql para buscar pesquisa no bd";
-        }
-
-        
+        }    
     ?>
 
     <body>
@@ -41,9 +42,12 @@
                 <div class="nav-wrapper">
                 <form class="" action="pesquisa.php"  method="POST" >
                     <div class="input-field">
-                    <input id="search" type="search" name="busca" required>
-                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
+                    <input id="search" type="search" name="busca"/>
+                    <!-- <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i> -->
+                    <label class="label-icon" for="search"><button class="btn waves-effect waves-light right" type="submit">Pesquisar
+                    <i class="material-icons left">search</i></label>
+                  </button>
                     </div>
                 </form>
                 </div>
@@ -61,27 +65,25 @@
         </thead>
 
         <tbody>
+          <?php
+            if($totalRegistros > 0) {
+              foreach($matrizDados as $linha){
+          ?>
           <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
+            <td><?=$linha['nomePessoa'];?></td>
+            <td><?=$linha['endereco'];?></td>
+            <td><?=$linha['telefone'];?></td>
+            <td><?=$linha['email'];?></td>
+            <td><?=$linha['dataNascimento'];?></td>
           </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-          </tr>
+          <?php
+              }
+            }
+          ?>
+
         </tbody>
       </table>
-
-
         </div>
-
 
       <!--JavaScript at end of body for optimized loading-->
       <script type="text/javascript" src="js/materialize.min.js"></script>
