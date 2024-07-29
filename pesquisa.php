@@ -44,9 +44,7 @@
                       <div class="row valign-wrapper">
                         <div class="input-field col s6">
                           <input id="search" type="search" name="busca" autofocus/>
-                          <a>
-                            <label class="label-icon" for="search">Digite o nome da pessoa para pesquisar</label>
-                          </a>
+                          <label class="label-icon" for="search">Digite o nome da pessoa para pesquisar</label>
                         </div>
                         <div class="col s3">
                           <button type="submit" class="btn waves-effect waves-light"><i class="material-icons right">search</i>Pesquisar
@@ -84,6 +82,12 @@
                 <td><?=$linha['telefone'];?></td>
                 <td><?=$linha['email'];?></td>
                 <td><?=mostrarData($linha['dataNascimento']);?></td>
+                <td class="">
+                  <a href="editarPessoa.php?id=<?=$linha['id'];?>" class="btn waves-effect waves-light ">Editar</a>
+                  <a href="#" class="btn waves-effect red lighten-1">Excluir</a>
+                </td>
+                
+              
               </tr>
               <?php
                   }

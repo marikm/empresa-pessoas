@@ -12,10 +12,25 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.7-beta.0/inputmask.min.js"></script>
     </head>
 
+    <?php
+        try {
+            require_once("./conexao/conexao.php");
+    
+            $id = $_GET['id'];
+            $sql = $conn->prepare("SELEECT * FROM pessoas WHERE id = :id");
+
+            $sql->execute(array(":id" => $id));
+
+
+        } catch(PDOException $e) {
+            echo "Não foi possivel selecionar a linha referente ao id selecionado";
+        }
+    ?>
+
     <body>
         <div class="container #e1f5fe light-blue lighten-5 center">
-            <h1>Cadastro de Pessoa</h1>
-            <form action="cadastroPessoa.php" method="POST">
+            <h1>Editar cadastro de Pessoa</h1>
+            <form action="editarPessoaIns.php" method="POST">
                 <div class="row">
                     <div class="col s12">
                         <div class="row">

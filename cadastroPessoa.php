@@ -20,8 +20,9 @@
                 $endereco = filter_input(INPUT_POST, "endereco", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $telefone = filter_input(INPUT_POST, "telefone", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                $dataNascimento = filter_input(INPUT_POST, "dataNascimento", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    
+                $dataNascimentoF = explode("/", filter_input(INPUT_POST, "dataNascimento", FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+                $dataNascimento = $dataNascimentoF[2]."-".$dataNascimentoF[1]."-".$dataNascimentoF[0];
+                echo $dataNascimento;
                 try{
                     require_once("./conexao/conexao.php");
                     $sql = $conn -> prepare("INSERT INTO pessoas 
