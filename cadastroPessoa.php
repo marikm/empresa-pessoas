@@ -60,7 +60,9 @@
             }
 
             ?>
-            
+            <a href="pessoas.php">
+                <button class="btn waves-effect waves-light">Voltar</button>
+            </a>
 
         </div>
         
